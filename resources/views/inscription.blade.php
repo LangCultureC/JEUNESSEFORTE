@@ -1,44 +1,72 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="box-confession" style="max-width: 460px; margin: 3rem auto;">
-    <h2 style="margin-bottom: 1.5rem;">📝 Créer un compte</h2>
-
-    @if ($errors->any())
-        <p style="color: var(--danger-red); margin-bottom: 1rem;">{{ $errors->first() }}</p>
-    @endif
-
-    <form method="POST" action="/inscription">
-        @csrf
-        <input type="text" name="name" placeholder="Ton prénom ou pseudo" required
-            style="width:100%; padding:0.75rem; margin-bottom:1rem; border:1px solid #E2E8F0; border-radius:8px;">
-        <input type="email" name="email" placeholder="Adresse email" required
-            style="width:100%; padding:0.75rem; margin-bottom:1rem; border:1px solid #E2E8F0; border-radius:8px;">
-        <input type="password" name="password" placeholder="Mot de passe" required
-            style="width:100%; padding:0.75rem; margin-bottom:1rem; border:1px solid #E2E8F0; border-radius:8px;">
-        <input type="password" name="password_confirmation" placeholder="Confirme le mot de passe" required
-            style="width:100%; padding:0.75rem; margin-bottom:1.5rem; border:1px solid #E2E8F0; border-radius:8px;">
-
-        <div style="margin-bottom:1.5rem;">
-            <div style="font-weight:600; margin-bottom:0.5rem; font-size:0.9rem;">Je m'inscris en tant que :</div>
-            <label style="display:flex; align-items:center; gap:0.5rem; padding:0.6rem; border:1px solid #E2E8F0; border-radius:8px; margin-bottom:0.5rem; cursor:pointer;">
-                <input type="radio" name="role_choisi" value="jeune" checked> Membre (étudiant)
-            </label>
-            <label style="display:flex; align-items:center; gap:0.5rem; padding:0.6rem; border:1px solid #E2E8F0; border-radius:8px; margin-bottom:0.5rem; cursor:pointer;">
-                <input type="radio" name="role_choisi" value="pair-aidant"> Pair-aidant <span style="color:var(--text-muted); font-size:0.8rem;">(validation admin requise)</span>
-            </label>
-            <label style="display:flex; align-items:center; gap:0.5rem; padding:0.6rem; border:1px solid #E2E8F0; border-radius:8px; cursor:pointer;">
-                <input type="radio" name="role_choisi" value="psychologue"> Psychologue <span style="color:var(--text-muted); font-size:0.8rem;">(validation admin requise)</span>
-            </label>
+<div class="auth-page login-page register-page">
+  <div class="login-shell">
+    <aside class="login-welcome" aria-label="Rejoindre JeunesseForte">
+        <span class="login-community">JEUNESSEFORTE · ENSEMBLE</span>
+        <div class="login-welcome-copy">
+            <span class="login-symbol" aria-hidden="true">✳</span>
+            <h2>Ta place est ici.<br><em>Avançons ensemble.</em></h2>
+            <p>Un premier pas pour partager ce que tu vis, trouver du soutien ou accompagner d’autres jeunes.</p>
         </div>
+        <div class="login-values"><span>Écoute</span><span>Entraide</span><span>Bienveillance</span></div>
+    </aside>
+    <div class="auth-card">
+        <p class="eyebrow">Bienvenue dans la communauté</p>
+        <h1 class="auth-title">Créer un compte</h1>
+        <p class="auth-description">Rejoins la communauté, à ton rythme.</p>
 
-        <button type="submit" style="width:100%; padding:0.75rem; background:var(--brand-primary); color:white; border:none; border-radius:8px; font-weight:600; cursor:pointer;">
-            S'inscrire
-        </button>
-    </form>
+        @if ($errors->any())
+            <p class="auth-error" role="alert">{{ $errors->first() }}</p>
+        @endif
 
-    <p style="margin-top:1.5rem; text-align:center; font-size:0.9rem;">
-        Déjà un compte ? <a href="/connexion" style="color:var(--brand-primary); font-weight:600;">Se connecter</a>
-    </p>
+        <form method="POST" action="/inscription" class="auth-form">
+            @csrf
+            <div class="login-field register-field">
+            <label class="auth-label" for="register-name">Prénom ou pseudo</label>
+            <input type="text" name="name" id="register-name" autocomplete="nickname" class="auth-field" placeholder="Ton prénom ou pseudo" required>
+            </div>
+            <div class="login-field register-field">
+            <label class="auth-label" for="register-email">Adresse email</label>
+            <input type="email" name="email" id="register-email" autocomplete="email" class="auth-field" placeholder="toi@exemple.com" required>
+            </div>
+            <div class="login-field register-field">
+            <label class="auth-label" for="register-password">Mot de passe</label>
+            <input type="password" name="password" id="register-password" autocomplete="new-password" class="auth-field" placeholder="Mot de passe" required>
+            </div>
+            <div class="login-field register-field">
+            <label class="auth-label" for="register-password_confirmation">Confirmer le mot de passe</label>
+            <input type="password" name="password_confirmation" id="register-password_confirmation" autocomplete="new-password" class="auth-field" placeholder="Confirme le mot de passe" required>
+            </div>
+
+            <fieldset class="auth-role-block">
+                <legend class="auth-role-title">Je m’inscris en tant que</legend>
+                <div class="auth-role-list">
+                    <label class="auth-role-option">
+                        <input type="radio" name="role_choisi" value="jeune" checked>
+                        <span>Membre (étudiant)</span>
+                    </label>
+                    <label class="auth-role-option">
+                        <input type="radio" name="role_choisi" value="pair-aidant">
+                        <span>Pair-aidant</span>
+                        <span class="auth-role-note">Validation admin requise</span>
+                    </label>
+                    <label class="auth-role-option">
+                        <input type="radio" name="role_choisi" value="psychologue">
+                        <span>Psychologue</span>
+                        <span class="auth-role-note">Validation admin requise</span>
+                    </label>
+                </div>
+            </fieldset>
+
+            <button type="submit" class="auth-submit">Créer mon compte <span aria-hidden="true">→</span></button>
+        </form>
+
+        <p class="auth-footer">
+            Déjà un compte ? <a href="/connexion" class="auth-link">Se connecter</a>
+        </p>
+    </div>
 </div>
+  </div>
 @endsection

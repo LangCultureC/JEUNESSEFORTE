@@ -1,4 +1,15 @@
 @import 'tailwindcss';
+@import './global.css';
+@import './navbar.css';
+@import './footer.css';
+@import './inscription.css';
+@import './connexion.css';
+@import './index.css';
+@import './admin.css';
+@import './dashboard-pro.css';
+@import './messagerie.css';
+@import './home.css';
+@import './theme.css';
 
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
 @source '../../storage/framework/views/*.php';

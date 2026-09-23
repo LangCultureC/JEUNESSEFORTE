@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<h2 style="margin-bottom:1.5rem;">🛡️ Panneau d'Administration</h2>
+<div class="page-heading"><p class="eyebrow">Gestion de la communauté</p><h1>Panneau d’administration</h1></div>
 
 @if(session('message'))
 <div class="stat-card" style="background:#EAF4EE; border:1px solid var(--brand-primary); margin-bottom:1.5rem;">
@@ -9,14 +9,14 @@
 </div>
 @endif
 
-<h3 style="margin-bottom:1rem;">⏳ Demandes en attente ({{ $enAttente->count() }})</h3>
+<h2 class="admin-section-title">⏳ Demandes en attente ({{ $enAttente->count() }})</h2>
 
 @if($enAttente->isEmpty())
     <p style="color:var(--text-muted); margin-bottom:2rem;">Aucune demande en attente.</p>
 @else
     <div style="margin-bottom:2rem;">
         @foreach($enAttente as $u)
-        <div class="stat-card" style="display:flex; justify-content:space-between; align-items:center;">
+        <div class="stat-card admin-request">
             <div>
                 <strong>{{ $u->name }}</strong> ({{ $u->email }})
                 <br><span class="tag-cat">Demande : {{ $u->role_souhaite }}</span>
@@ -36,9 +36,10 @@
     </div>
 @endif
 
-<h3 style="margin-bottom:1rem;">👥 Tous les comptes ({{ $tousLesUtilisateurs->count() }})</h3>
+<h2 class="admin-section-title">👥 Tous les comptes ({{ $tousLesUtilisateurs->count() }})</h2>
 
-<table style="width:100%; border-collapse:collapse; background:white; border-radius:12px; overflow:hidden; box-shadow:var(--shadow-sm);">
+<div class="admin-table-wrap" role="region" aria-label="Liste des comptes" tabindex="0">
+<table class="admin-table">
     <thead>
         <tr style="background:#F1F5F9; text-align:left;">
             <th style="padding:0.75rem;">Nom</th>
@@ -77,4 +78,5 @@
         @endforeach
     </tbody>
 </table>
+</div>
 @endsection

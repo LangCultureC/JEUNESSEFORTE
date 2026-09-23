@@ -1,0 +1,54 @@
+/* Shared visual language for every Blade page. */
+:root {
+    --bg-main: #f5f7f4;
+    --brand-primary: #195c3d;
+    --brand-secondary: #287a52;
+    --accent-gold: #c8963e;
+    --text-dark: #182c25;
+    --text-muted: #607068;
+    --card-bg: #fff;
+    --danger-red: #bc3945;
+    --border: #dfe7e1;
+    --radius-lg: 24px;
+    --radius-md: 12px;
+    --shadow-sm: 0 8px 28px rgb(25 60 40 / 5%);
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+body { margin: 0; background: var(--bg-main); color: var(--text-dark); font-family: 'Plus Jakarta Sans', sans-serif; line-height: 1.6; }
+h1, h2, h3, p { margin: 0; }
+h1, h2, h3 { line-height: 1.25; font-weight: 700; }
+h1, h2 { font-family: 'Space Grotesk', sans-serif; letter-spacing: -.035em; }
+h1 { font-size: clamp(1.8rem, 4vw, 2.8rem); }
+h2 { font-size: clamp(1.3rem, 2.6vw, 1.8rem); }
+a { color: var(--brand-primary); }
+button, input, select, textarea { font: inherit; }
+button, select, a { -webkit-tap-highlight-color: transparent; }
+button { cursor: pointer; font-weight: 600; transition: filter .18s, box-shadow .18s; }
+button:hover:not(:disabled) { filter: brightness(.94); }
+button, input:not([type=radio]):not([type=checkbox]):not([type=hidden]), select { min-height: 44px; }
+input:not([type=radio]):not([type=checkbox]), select, textarea { min-width: 0; max-width: 100%; }
+input, select, textarea { color: var(--text-dark); background: white; border: 1px solid var(--border); border-radius: var(--radius-md); padding: .75rem .9rem; }
+input::placeholder, textarea::placeholder { color: var(--text-muted); opacity: 1; }
+textarea { display: block; width: 100%; min-height: 140px; margin-bottom: 1rem; resize: vertical; }
+:where(a, button, input, select, textarea, [tabindex]):focus-visible { outline: 3px solid #b3842d; outline-offset: 3px; }
+:disabled { cursor: not-allowed; opacity: .55; }
+.container { width: 100%; max-width: 1200px; margin-inline: auto; padding-inline: 1.5rem; }
+.site-main { padding-block: 2.5rem 4rem; }
+.box-confession, .confession-card, .stat-card { border: 1px solid var(--border); border-radius: var(--radius-lg); background: var(--card-bg); box-shadow: var(--shadow-sm); padding: clamp(1.2rem, 3vw, 2rem); }
+.box-confession { margin-bottom: 2rem; }
+.stat-card, .confession-card { margin-bottom: 1.25rem; overflow-wrap: anywhere; }
+.tag-cat { display: inline-block; padding: .3rem .7rem; border-radius: 30px; background: #eaf4ee; color: var(--brand-primary); font-size: .75rem; font-weight: 700; }
+.eyebrow { margin-bottom: .9rem; color: var(--brand-primary); font-size: .7rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; }
+.page-heading { margin-bottom: 1.75rem; }
+.page-heading p { margin-top: .6rem; color: var(--text-muted); }
+.skip-link { position: fixed; top: -100px; left: 1rem; z-index: 100; padding: .8rem 1rem; background: white; border-radius: 8px; }
+.skip-link:focus { top: 1rem; }
+
+@media (max-width: 640px) {
+    .container { padding-inline: 1rem; }
+    .site-main { padding-block: 1.5rem 2.5rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+}

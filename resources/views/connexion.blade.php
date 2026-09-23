@@ -1,26 +1,38 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="box-confession" style="max-width: 420px; margin: 3rem auto;">
-    <h2 style="margin-bottom: 1.5rem;">🔐 Connexion</h2>
-
-    @if ($errors->any())
-        <p style="color: var(--danger-red); margin-bottom: 1rem;">{{ $errors->first() }}</p>
-    @endif
-
-    <form method="POST" action="/connexion">
-        @csrf
-        <input type="email" name="email" placeholder="Adresse email" required
-            style="width:100%; padding:0.75rem; margin-bottom:1rem; border:1px solid #E2E8F0; border-radius:8px;">
-        <input type="password" name="password" placeholder="Mot de passe" required
-            style="width:100%; padding:0.75rem; margin-bottom:1rem; border:1px solid #E2E8F0; border-radius:8px;">
-        <button type="submit" style="width:100%; padding:0.75rem; background:var(--brand-primary); color:white; border:none; border-radius:8px; font-weight:600; cursor:pointer;">
-            Se connecter
-        </button>
-    </form>
-
-    <p style="margin-top:1.5rem; text-align:center; font-size:0.9rem;">
-        Pas encore de compte ? <a href="/inscription" style="color:var(--brand-primary); font-weight:600;">S'inscrire</a>
-    </p>
+<div class="auth-page login-page">
+  <div class="login-shell">
+    <aside class="login-welcome" aria-label="Bienvenue sur JeunesseForte">
+        <span class="login-community">JEUNESSEFORTE · ENSEMBLE</span>
+        <div class="login-welcome-copy">
+            <span class="login-symbol" aria-hidden="true">✳</span>
+            <h2>Un espace pour parler.<br><em>Une force pour avancer.</em></h2>
+            <p>Parfois, tout commence par quelques mots. Retrouve une communauté qui prend le temps de t’écouter.</p>
+        </div>
+        <div class="login-values"><span>Écoute</span><span>Entraide</span><span>Bienveillance</span></div>
+    </aside>
+    <div class="auth-card">
+        <p class="eyebrow">Heureux de te retrouver</p>
+        <h1 class="auth-title">Connexion</h1>
+        <p class="auth-description">Ton espace d’échange t’attend.</p>
+        @if ($errors->any())
+            <p class="auth-error" role="alert">{{ $errors->first() }}</p>
+        @endif
+        <form method="POST" action="/connexion" class="auth-form">
+            @csrf
+            <div class="login-field">
+            <label class="auth-label" for="login-email">Adresse email</label>
+            <input id="login-email" class="auth-field" type="email" name="email" placeholder="toi@exemple.com" autocomplete="email" required>
+            </div>
+            <div class="login-field">
+            <label class="auth-label" for="login-password">Mot de passe</label>
+            <input id="login-password" class="auth-field" type="password" name="password" placeholder="Ton mot de passe" autocomplete="current-password" required>
+            </div>
+            <button type="submit" class="auth-submit">Se connecter <span aria-hidden="true">→</span></button>
+        </form>
+        <p class="auth-footer">Pas encore de compte ? <a href="/inscription" class="auth-link">S'inscrire</a></p>
+    </div>
 </div>
+  </div>
 @endsection
