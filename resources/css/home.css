@@ -1,0 +1,12 @@
+/* Alternate home view, sharing the application layout. */
+.home-grid { display: grid; grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr); border-radius: var(--radius-lg); overflow: hidden; border: 1px solid var(--border); box-shadow: var(--shadow-sm); }
+.home-intro { display: flex; flex-direction: column; justify-content: center; padding: clamp(1.5rem, 5vw, 4rem); background: white; }
+.home-intro h1 { font-size: clamp(2rem, 3.6vw, 3.2rem); }
+.home-intro h1 span { color: var(--brand-primary); }
+.home-intro p { color: var(--text-muted); }
+.home-features { display: flex; flex-direction: column; }
+.home-feature { display: flex; flex: 1; flex-direction: column; justify-content: center; padding: clamp(1.5rem, 3vw, 2.5rem); }
+.home-feature-podcast { background: var(--brand-primary); color: white; }
+.home-feature-podcast a { color: var(--brand-primary); text-decoration: none; }
+.home-feature-support { background: #f3e7d1; color: #624a20; }
+@media (max-width: 850px) { .home-grid { grid-template-columns: minmax(0, 1fr); } }

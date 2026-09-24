@@ -1,0 +1,68 @@
+/* Theme is applied before styles load to prevent a light flash. */
+:root { color-scheme: light; }
+.theme-toggle { display: inline-grid; place-items: center; flex-shrink: 0; width: 44px; height: 44px; padding: 0; margin-left: auto; border: 1px solid var(--border); border-radius: 50%; background: var(--card-bg); color: var(--text-dark); font-size: 1.5rem; }
+.theme-toggle:hover { box-shadow: 0 0 0 4px #5f997418; }
+.theme-sun { display: none; }
+@media (min-width: 1200px) {
+    .jf-navbar .navbar-collapse { order: 1; }
+    .theme-toggle { order: 2; margin-left: 0; }
+    .jf-navbar .navbar-inner { column-gap: .6rem; }
+    .jf-navbar .account-name { max-width: 75px; }
+}
+@media (max-width: 380px) {
+    .jf-navbar .navbar-toggler > span:last-child { display: none; }
+    .jf-navbar .brand-copy > span { font-size: .75rem; }
+    .jf-navbar .brand-copy small { font-size: .55rem; }
+}
+html[data-theme=dark] {
+    color-scheme: dark;
+    --bg-main: #101b17;
+    --card-bg: #1a2922;
+    --text-dark: #e5efe8;
+    --text-muted: #adbbb1;
+    --border: #35483c;
+    --brand-primary: #96d4aa;
+    --brand-secondary: #327b54;
+    --danger-red: #f393a0;
+    --auth-text: #e5efe8;
+    --auth-muted: #adbbb1;
+    --auth-border: #35483c;
+    --auth-card: #1a2922;
+    --auth-primary: #9cd6ac;
+    --auth-primary-soft: #253e2e;
+    --auth-danger: #ffadb8;
+}
+html[data-theme=dark] body,
+html[data-theme=dark] body:has(.login-page) { background: var(--bg-main); color: var(--text-dark); }
+html[data-theme=dark] .theme-sun { display: inline; }
+html[data-theme=dark] .theme-moon { display: none; }
+html[data-theme=dark] :is(.site-header, .login-shell, .feed-empty, .admin-table-wrap, .chat-shell, .home-intro, .skip-link) { background: var(--card-bg); border-color: var(--border); }
+html[data-theme=dark] :is(input, select, textarea, .login-page .auth-field, .register-page .auth-role-option) { background: #14231b; color: var(--text-dark); border-color: var(--border); }
+html[data-theme=dark] :is(input, textarea)::placeholder { color: #a4b4a8; }
+html[data-theme=dark] .login-page .auth-field:focus { background: #1d3024; border-color: #91c99e; }
+html[data-theme=dark] :is(.login-page .auth-title, .login-page .auth-label, .register-page .auth-role-title, .register-page .auth-role-option > span, .feed-empty h3, .jf-navbar .brand-copy > span, .jf-navbar .brand-copy strong, .home-intro h1, .home-intro h1 span) { color: var(--text-dark); }
+html[data-theme=dark] :is(.login-page .auth-description, .register-page .auth-role-option .auth-role-note, .jf-navbar .brand-copy small, .jf-navbar .navbar-account, .jf-navbar .nav-link) { color: var(--text-muted); }
+html[data-theme=dark] :is(.jf-navbar .nav-link.active, .jf-navbar .nav-link:hover, .jf-navbar .navbar-toggler, .filter-btn, .tag-cat, .pillar-number, .empty-symbol, .register-page .auth-role-option:has(input:checked)) { background: #263f30; color: #c5e5cc; border-color: #4e7058; }
+html[data-theme=dark] .filter-btn.active { background: #365e43; color: white; }
+html[data-theme=dark] .welcome-page .filter-btn:hover:not(.active) { background: #304d39; }
+html[data-theme=dark] :is(.chat-sidebar, .chat-messages) { background: #14221b; }
+html[data-theme=dark] :is(.admin-table tbody tr:hover, .home-feature-support) { background: #283b2c; color: var(--text-dark); }
+html[data-theme=dark] :is(.login-page .auth-link, .community-signature) { color: #a9dfb7; }
+html[data-theme=dark] :is(.auth-footer, .welcome-pillars, .community-signature, .navbar-actions, .chat-heading, .chat-sidebar-heading, .chat-composer, .chat-sidebar) { border-color: var(--border); }
+html[data-theme=dark] .welcome-page .donation-card { background: #342d1e; border-color: #5a4a2b; }
+/* Older Blade cards use inline presentation; these overrides cover dynamic content too. */
+html[data-theme=dark] .site-main [style*="background:white"],
+html[data-theme=dark] .site-main [style*="background: white"],
+html[data-theme=dark] .site-main [style*="background:#F1F5F9"],
+html[data-theme=dark] .site-main [style*="background: #F1F5F9"],
+html[data-theme=dark] .site-main [style*="background: #F8FAFC"],
+html[data-theme=dark] .site-main [style*="background:#EAF4EE"],
+html[data-theme=dark] .site-main [style*="background: #FEF2F2"] { background: #23362a !important; color: var(--text-dark); }
+html[data-theme=dark] .site-main [style*="#E2E8F0"] { border-color: var(--border) !important; }
+html[data-theme=dark] .site-main [style*="color:#B45309"],
+html[data-theme=dark] .site-main [style*="color:#78350F"] { color: #efd4a0 !important; }
+html[data-theme=dark] :is(.welcome-button, .chat-composer button) { background: #286747; color: white; }
+html[data-theme=dark] .site-main button[style*="background:var(--brand-primary)"],
+html[data-theme=dark] .site-main span[style*="background:var(--brand-primary)"],
+html[data-theme=dark] .site-main button[style*="background:var(--text-dark)"] { background: #286747 !important; color: white !important; }
+html[data-theme=dark] .jf-navbar .nav-signout:hover { background: #422a31; }

@@ -1,0 +1,15 @@
+.admin-section-title { font-size: 1.2rem; margin-block: 2rem 1rem; }
+.admin-request { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+.admin-request > div { min-width: 0; }
+.admin-request .tag-cat { margin-top: .5rem; }
+.admin-request > div:last-child { display: flex; flex-wrap: wrap; gap: .5rem; flex-shrink: 0; }
+.admin-table-wrap { max-width: 100%; overflow-x: auto; border: 1px solid var(--border); border-radius: 18px; background: white; box-shadow: var(--shadow-sm); }
+.admin-table { width: 100%; min-width: 780px; border-collapse: collapse; font-size: .875rem; }
+.admin-table th { color: var(--text-muted); font-size: .72rem; text-transform: uppercase; letter-spacing: .07em; }
+.admin-table th, .admin-table td { padding: 1rem !important; text-align: left; }
+.admin-table td { overflow-wrap: anywhere; max-width: 300px; }
+.admin-table tbody tr:hover { background: #f5f9f5; }
+.admin-table td:first-child { font-weight: 700; }
+.admin-table form { align-items: center; }
+.admin-table select { min-width: 130px; }
+@media (max-width: 640px) { .admin-request { align-items: flex-start; flex-direction: column; } }

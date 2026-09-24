@@ -10,10 +10,10 @@ use App\Http\Controllers\SalonController;
 Route::get('/', function () { return view('index'); });
 
 Route::get('/connexion', [AuthController::class, 'showLogin'])->name('login');
-Route::post('/connexion', [AuthController::class, 'login']);
-Route::get('/inscription', [AuthController::class, 'showRegister']);
-Route::post('/inscription', [AuthController::class, 'register']);
-Route::get('/deconnexion', [AuthController::class, 'logout']);
+Route::post('/connexion', [AuthController::class, 'login'])->name('login.submit');
+Route::get('/inscription', [AuthController::class, 'showRegister'])->name('register');
+Route::post('/inscription', [AuthController::class, 'register'])->name('register.submit');
+Route::get('/deconnexion', [AuthController::class, 'logout'])->name('logout');
 
 Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
     Route::get('/', [AdminController::class, 'index'])->name('admin.index');

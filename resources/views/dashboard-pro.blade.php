@@ -1,10 +1,10 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="box-confession">
+<div class="box-confession pro-page">
     <h1 style="margin-bottom: 2rem; font-family: 'Space Grotesk', sans-serif;">💼 Votre Espace d'Écoute Pro</h1>
     
-    <div style="display: grid; grid-template-columns: 1.2fr 1fr; gap: 2.5rem;">
+    <div class="pro-grid">
         <!-- DROIT DE TRAITEMENT : Gestion des alertes et demandes de RDV -->
         <div>
             <h2 style="font-size: 1.3rem; margin-bottom: 1rem; color: var(--brand-primary); font-family: 'Space Grotesk', sans-serif;">🚨 Alertes SOS et Demandes de RDV reçues</h2>
