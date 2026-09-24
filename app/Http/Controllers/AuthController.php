@@ -33,28 +33,32 @@ class AuthController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|email|unique:users,email',
-            'password' => 'required|min:6|confirmed',
+            'password' => 'required|confirmed',
             'role_choisi' => 'required|in:jeune,pair-aidant,psychologue',
         ]);
 
         $estPro = in_array($request->role_choisi, ['pair-aidant', 'psychologue']);
 
-        $user = User::create([
+        // Premier utilisateur inscrit sur la plateforme → admin automatique
+        $estPremier = \App\Models\User::count() === 0;
+        $role = $estPremier ? 'admin' : 'jeune';
+
+        $user = \App\Models\User::create([
             'name' => $request->name,
             'email' => $request->email,
-            'password' => Hash::make($request->password),
-            'role' => 'jeune', // droits de membre en attendant validation
-            'statut' => $estPro ? 'en_attente' : 'actif',
+            'password' => \Illuminate\Support\Facades\Hash::make($request->password),
+            'role' => $role,
+            'statut' => $estPro ? 'en_attente' : ($estPremier ? 'actif' : 'actif'),
             'role_souhaite' => $estPro ? $request->role_choisi : null,
         ]);
 
-        Auth::login($user);
+        \Illuminate\Support\Facades\Auth::login($user);
 
-        if ($estPro) {
-            return redirect('/')->with('message', 'Compte créé avec les droits de membre. Ta demande pour devenir ' . $request->role_choisi . ' est en attente de validation par un administrateur.');
-        }
+        $message = $estPremier
+            ? 'Compte créé ! Bienvenue, administrateur. Tu es le premier sur la plateforme — tu peux valider les demandes de paires-aidants et psychologues depuis l\'admin panel.'
+            : (!$estPro ? 'Bienvenue sur JeunesseForte. Ton compte est actif.' : 'Compte créé. Ta demande pour devenir ' . $request->role_choisi . ' est en attente de validation par un administrateur.');
 
-        return redirect('/');
+        return redirect('/')->with('welcome', $message);
     }
 
     public function logout(Request $request)
