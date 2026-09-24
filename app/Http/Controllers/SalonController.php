@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Events\MessageSent;
+use Illuminate\Support\Facades\Event;
 use App\Models\SalonPrive;
 use App\Models\MessageSalon;
 use App\Models\Confession;
@@ -67,6 +69,13 @@ class SalonController extends Controller
             'auteur_id' => Auth::id(),
             'texte' => $request->texte,
         ]);
+
+        $message = MessageSalon::where('salon_id', $salon->id)
+            ->where('auteur_id', Auth::id())
+            ->latest('created_at')
+            ->first();
+
+        event(new MessageSent($message));
 
         return response()->json(['message' => 'Envoyé.'], 201);
     }

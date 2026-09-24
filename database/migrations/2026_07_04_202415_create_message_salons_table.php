@@ -13,6 +13,9 @@ return new class extends Migration
     {
         Schema::create('message_salons', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('salon_id')->constrained('salon_prives')->cascadeOnDelete();
+            $table->foreignId('auteur_id')->constrained('users')->cascadeOnDelete();
+            $table->text('texte');
             $table->timestamps();
         });
     }

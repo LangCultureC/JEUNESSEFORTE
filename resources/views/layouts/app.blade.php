@@ -85,6 +85,9 @@
 
     <main class="container">
         @yield('content')
+
+        <!-- WIDGET DE DON LATÉRAL (visible sur toutes les pages) -->
+        @include('partials.widget_don')
     </main>
 
     @stack('scripts')

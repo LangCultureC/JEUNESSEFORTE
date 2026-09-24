@@ -6,8 +6,9 @@
     "keywords": ["laravel", "framework"],
     "license": "MIT",
     "require": {
-        "php": "^8.3",
+        "php": "^8.2",
         "laravel/framework": "^13.8",
+        "laravel/reverb": "*",
         "laravel/tinker": "^3.0"
     },
     "require-dev": {
@@ -79,7 +80,8 @@
         "allow-plugins": {
             "pestphp/pest-plugin": true,
             "php-http/discovery": true
-        }
+        },
+        "cache-dir": "C:/Users/boris/AppData/Local/Composer/cache"
     },
     "minimum-stability": "stable",
     "prefer-stable": true
